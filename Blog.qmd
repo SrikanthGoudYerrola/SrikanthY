@@ -1,0 +1,63 @@
+**Implementing Simple Linear Regression in R**
+
+Linear regression in R is accomplished with the lm() function, which stands for "linear model." Let's look at how to use a sample dataset to construct a simple linear regression.
+
+Step 1: Data Loading and Exploration
+
+We'll utilize a sample dataset of data for this demonstration.csv file with two variables: X as independent variable and Y as dependent variable.
+
+```{r}
+# Load the dataset
+data <- read.csv("data.csv")
+
+# View the structure of the dataset
+str(data)
+
+# Summary statistics
+summary(data)
+
+```
+
+Step 2: Data Visualization Visualizing the data before applying linear regression aids in understanding the relationship between variables.
+
+```{r}
+# Scatter plot to visualize the relationship
+plot(data$X, data$Y, main = "Scatter plot of X vs Y",
+     xlab = "X", ylab = "Y", col = "blue", pch = 19)
+```
+
+Step 3: Linear Model Fit Let's now design a linear regression model based on X to predict Y.
+
+```{r}
+# Fit a linear regression model
+model <- lm(Y ~ X, data = data)
+
+# Summary of the model
+summary(model)
+
+```
+
+Step 4: Create a Regression Line On the scatter plot, draw the regression line as follows.
+
+```{r}
+# Scatter plot with regression line
+plot(data$X, data$Y, main = "Linear Regression",
+     xlab = "X", ylab = "Y", col = "blue", pch = 19)
+abline(model, col = "red")
+```
+
+Step 5: Making Prognoses The model can be used to forecast fresh data:
+
+```{r}
+# Create new data for prediction
+new_data <- data.frame(X = c(10, 15, 20))  # Example values of X
+
+# Predictions
+predictions <- predict(model, newdata = new_data)
+predictions
+
+```
+
+Conclusion
+
+It is simple to implement linear regression in R, allowing us to analyze the relationship between variables, make predictions, and gain important insights from the data.
